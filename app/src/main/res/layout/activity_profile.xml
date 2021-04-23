@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".profile">
+
+    <TextView
+        android:id="@+id/profile_rate"
+        android:layout_width="142dp"
+        android:layout_height="38dp"
+        android:fontFamily="sans-serif-black"
+        android:text="Rate"
+        tools:layout_editor_absoluteX="29dp"
+        tools:layout_editor_absoluteY="523dp" />
+
+    <TextView
+        android:id="@+id/profile_remaining_recharge_view"
+        android:layout_width="318dp"
+        android:layout_height="48dp"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="26dp"
+        tools:layout_editor_absoluteY="428dp" />
+
+    <TextView
+        android:id="@+id/profile_name"
+        android:layout_width="141dp"
+        android:layout_height="45dp"
+        android:fontFamily="sans-serif-black"
+        android:text="Name"
+        tools:layout_editor_absoluteX="26dp"
+        tools:layout_editor_absoluteY="82dp" />
+
+    <TextView
+        android:id="@+id/profile_last_recharge"
+        android:layout_width="143dp"
+        android:layout_height="42dp"
+        android:fontFamily="sans-serif-black"
+        android:text="Last Recharge"
+        tools:layout_editor_absoluteX="26dp"
+        tools:layout_editor_absoluteY="229dp" />
+
+    <TextView
+        android:id="@+id/profile_remaining_recharge"
+        android:layout_width="142dp"
+        android:layout_height="38dp"
+        android:fontFamily="sans-serif-black"
+        android:text="Remaining Recharge"
+        tools:layout_editor_absoluteX="25dp"
+        tools:layout_editor_absoluteY="380dp" />
+
+    <TextView
+        android:id="@+id/profile_name_view"
+        android:layout_width="327dp"
+        android:layout_height="45dp"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="26dp"
+        tools:layout_editor_absoluteY="140dp" />
+
+    <TextView
+        android:id="@+id/profile_last_recharge_view"
+        android:layout_width="318dp"
+        android:layout_height="48dp"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="26dp"
+        tools:layout_editor_absoluteY="283dp" />
+
+    <TextView
+        android:id="@+id/profile_rate_view"
+        android:layout_width="321dp"
+        android:layout_height="46dp"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="27dp"
+        tools:layout_editor_absoluteY="581dp" />
+
+    <Button
+        android:id="@+id/bluetooth_get_visible"
+        android:layout_width="137dp"
+        android:layout_height="58dp"
+        android:text="Back"
+        tools:layout_editor_absoluteX="124dp"
+        tools:layout_editor_absoluteY="645dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>
