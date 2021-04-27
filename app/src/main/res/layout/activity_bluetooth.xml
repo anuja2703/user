@@ -8,88 +8,53 @@
     tools:context=".bluetooth"
     android:transitionGroup="true">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageView"
-        android:src="@drawable/ic_launcher_foreground"
-        android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true"
-        android:theme="@style/Base.TextAppearance.AppCompat"
-        tools:ignore="UnknownId" />
 
-    <Button
-        android:id="@+id/bluetooth_turn_on"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/imageView"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginRight="25dp"
-        android:layout_toStartOf="@+id/imageView"
-        android:layout_toLeftOf="@+id/imageView"
-        android:clickable="true"
-        android:onClick="on"
-        android:text="Turn On" />
 
-    <Button
-        android:id="@+id/bluetooth_get_visible"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/bluetooth_turn_on"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="2dp"
-        android:onClick="visible"
-        android:text="Get visible" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/bluetooth_list_devices"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/imageView"
-        android:layout_marginStart="-111dp"
-        android:layout_marginLeft="-111dp"
-        android:layout_marginTop="72dp"
-        android:layout_toEndOf="@+id/imageView"
-        android:layout_toRightOf="@+id/imageView"
-        android:onClick="list"
-        android:text="List devices" />
+        <Button
+            android:id="@+id/bluetooth_turn_on"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:onClick="on"
+            android:text="TURN ON" />
 
-    <Button
-        android:id="@+id/bluetooth_turn_off"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/bluetooth_turn_on"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginStart="22dp"
-        android:layout_marginLeft="22dp"
-        android:layout_marginTop="26dp"
-        android:onClick="off"
-        android:text="turn off" />
+        <Button
+            android:id="@+id/bluetooth_get_visible"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="visible"
+            android:text="GET VISIBLE" />
 
-    <ListView
-        android:id="@+id/bluetooth_listView"
-        android:layout_width="359dp"
-        android:layout_height="576dp"
-        android:layout_below="@+id/bluetooth_textview_paired_devices"
-        android:layout_alignStart="@+id/bluetooth_turn_on"
-        android:layout_alignLeft="@+id/bluetooth_turn_on"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="-3dp"
-        android:layout_marginBottom="-105dp" />
+        <Button
+            android:id="@+id/bluetooth_list_devices"
+            android:layout_width="match_parent"
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Paired devices:"
-        android:id="@+id/bluetooth_textview_paired_devices"
-        android:textColor="#ff34ff06"
-        android:textSize="25dp"
-        android:layout_below="@+id/bluetooth_turn_off"
-        android:layout_alignLeft="@+id/bluetooth_listView"
-        android:layout_alignStart="@+id/bluetooth_listView" />
+            android:layout_height="wrap_content"
+            android:onClick="list"
+            android:text="LIST DEVICES" />
+
+        <Button
+            android:id="@+id/bluetooth_turn_off"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="off"
+            android:text="TURN OFF" />
+
+        <TextView
+            android:id="@+id/bluetooth_text_paired_devices"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:text="PAIRED DEVICES" />
+
+        <ListView
+            android:id="@+id/bluetooth_listView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
 
 </RelativeLayout>

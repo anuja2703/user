@@ -18,20 +18,23 @@ import java.util.Set;
 public class bluetooth extends AppCompatActivity {
     Button bluetooth_turn_on_btn,bluetooth_get_visible_btn,bluetooth_listdevices_btn,bluetooth_turn_off_btn,b4;
     private BluetoothAdapter BA;
+
     private Set<BluetoothDevice> pairedDevices;
+
     ListView lv;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bluetooth);
-
+        BA = BluetoothAdapter.getDefaultAdapter();
+        lv = (ListView)findViewById(R.id.bluetooth_listView);
         bluetooth_turn_on_btn = (Button) findViewById(R.id.bluetooth_turn_on);
         bluetooth_get_visible_btn=(Button)findViewById(R.id.bluetooth_get_visible);
         bluetooth_listdevices_btn=(Button)findViewById(R.id.bluetooth_list_devices);
         bluetooth_turn_off_btn=(Button)findViewById(R.id.bluetooth_turn_off);
 
-        BA = BluetoothAdapter.getDefaultAdapter();
-        lv = (ListView)findViewById(R.id.bluetooth_listView);
+
 
     }
     public void on(View v){
@@ -69,3 +72,13 @@ public class bluetooth extends AppCompatActivity {
         lv.setAdapter(adapter);
     }
 }
+
+
+
+
+
+
+
+
+
+
