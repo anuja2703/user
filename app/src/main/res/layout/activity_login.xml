@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Login">
+
+    <TextView
+        android:id="@+id/logintxt"
+        style="@style/MaterialAlertDialog.MaterialComponents.Title.Text.CenterStacked"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="92dp"
+        android:text="LOGIN"
+        android:textColor="#040404"
+        android:textSize="30sp"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:flow_horizontalAlign="end"
+        tools:layout_editor_absoluteX="187dp" />
+
+    <EditText
+        android:id="@+id/emailedittxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="65dp"
+        android:ems="10"
+        android:hint="Email address"
+        android:inputType="textPersonName"
+        android:textSize="24sp"
+        app:layout_constraintTop_toBottomOf="@+id/logintxt"
+        tools:layout_editor_absoluteX="203dp" />
+
+    <EditText
+        android:id="@+id/passedittxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPersonName|textPassword"
+        android:textSize="24sp"
+        app:layout_constraintTop_toBottomOf="@+id/emailedittxt"
+        tools:layout_editor_absoluteX="101dp" />
+
+    <Button
+        android:id="@+id/loginbtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="LOGIN"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passedittxt" />
+
+    <TextView
+        android:id="@+id/forgetpasswordtxt"
+        style="@style/MaterialAlertDialog.MaterialComponents.Title.Text.CenterStacked"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Forget Password?"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginbtn" />
+</androidx.constraintlayout.widget.ConstraintLayout>
