@@ -18,7 +18,7 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         loginbt=(Button)findViewById(R.id.loginbtn);
-        forgetpass=(TextView)findViewById(R.id.ForgetPasswordtxt);
+        forgetpass=(TextView)findViewById(R.id.forgetpasswordtxt);
         emailEdittxt=(EditText)findViewById(R.id.emailedittxt);
         loginbt.setOnClickListener(new View.OnClickListener() {
             @Override
