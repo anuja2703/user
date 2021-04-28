@@ -34,7 +34,6 @@ public class Registration extends AppCompatActivity {
         etmno=findViewById(R.id.regMobiletxt);
         etmail=findViewById(R.id.regEmailTxt);
         etpass=findViewById(R.id.editTextTextPassword);
-        register=findViewById(R.id.regbtn);
         goback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
