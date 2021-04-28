@@ -26,7 +26,7 @@ public class Login extends AppCompatActivity {
                 if(emailEdittxt.getText().toString().equals("iotproject488@gmail.com"))
                     startActivity(new Intent(Login.this,OwnerHome.class));
                 else
-                    startActivity(new Intent(Login.this,bluetooth.class));
+                    startActivity(new Intent(Login.this,MainActivity.class));
             }
         });
         forgetpass.setOnClickListener(new View.OnClickListener() {
