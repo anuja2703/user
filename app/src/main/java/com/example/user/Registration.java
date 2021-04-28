@@ -27,13 +27,13 @@ public class Registration extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
-        goback=findViewById(R.id.regGoBack);
+        goback=(TextView) findViewById(R.id.regGoBack);
         mAuth=FirebaseAuth.getInstance();
-        register=findViewById(R.id.regbtn);
-        etname=findViewById(R.id.regNametxt);
-        etmno=findViewById(R.id.regMobiletxt);
-        etmail=findViewById(R.id.regEmailTxt);
-        etpass=findViewById(R.id.editTextTextPassword);
+        register=(Button) findViewById(R.id.regbtn);
+        etname=(EditText) findViewById(R.id.regNametxt);
+        etmno=(EditText)findViewById(R.id.regMobiletxt);
+        etmail=(EditText)findViewById(R.id.regEmailTxt);
+        etpass=(EditText)findViewById(R.id.editTextTextPassword);
         goback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
