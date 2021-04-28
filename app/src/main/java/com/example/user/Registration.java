@@ -37,7 +37,7 @@ public class Registration extends AppCompatActivity {
         goback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Registration.this,MainActivity.class));
+                startActivity(new Intent(Registration.this,OwnerHome.class));
             }
         });
 
