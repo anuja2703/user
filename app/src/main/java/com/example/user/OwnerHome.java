@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class OwnerHome extends AppCompatActivity {
     private Button setRate,addcustomer,custinfo,logout;
     @Override
@@ -38,6 +40,7 @@ public class OwnerHome extends AppCompatActivity {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                FirebaseAuth.getInstance().signOut();
                 startActivity(new Intent(OwnerHome.this,Login.class));
             }
         });
