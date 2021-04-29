@@ -18,36 +18,39 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Objects;
+
 public class Registration extends AppCompatActivity {
     private EditText etname,etmno,etmail,etpass;
-    private Button register;
+    private Button registeruser;
     private FirebaseAuth mAuth;
-    private TextView goback;
+    private TextView gobacktohome;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
-        goback=(TextView) findViewById(R.id.regGoBack);
         mAuth=FirebaseAuth.getInstance();
-        register=(Button) findViewById(R.id.regbtn);
+        gobacktohome=(TextView) findViewById(R.id.regGoBack);
+        registeruser=(Button) findViewById(R.id.regbtn);
         etname=(EditText) findViewById(R.id.regNametxt);
         etmno=(EditText)findViewById(R.id.regMobiletxt);
         etmail=(EditText)findViewById(R.id.regEmailTxt);
         etpass=(EditText)findViewById(R.id.editTextTextPassword);
-        goback.setOnClickListener(new View.OnClickListener() {
+
+        gobacktohome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(Registration.this,OwnerHome.class));
             }
         });
 
-        register.setOnClickListener(new View.OnClickListener() {
+        registeruser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 final String name=etname.getText().toString();
                 final String email=etmail.getText().toString();
                 final String mno=etmno.getText().toString();
-                String pass=etpass.getText().toString();
+                final String pass=etpass.getText().toString();
                 if(name.isEmpty())
                 {
                     etname.setError("Enter the name");
@@ -91,30 +94,28 @@ public class Registration extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if(task.isSuccessful())
                                 {
-                                    User user=new User(name,mno,email);
+                                    User myuser=new User(name,mno,email);
                                     FirebaseDatabase.getInstance().getReference("Users")
                                             .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                            .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            .setValue(myuser).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
-                                            if(task.isSuccessful())
-                                            {
-                                                Toast.makeText(Registration.this,"User has been registered successfully",Toast.LENGTH_SHORT).show();
+                                            if(task.isSuccessful()) {
+                                                Toast.makeText(Registration.this, "User has been registered successfully", Toast.LENGTH_LONG).show();
                                             }
-                                            else {
-                                                Toast.makeText(Registration.this,"Failed to register! Try again!",Toast.LENGTH_SHORT).show();
+                                            else
+                                            {
+                                                Toast.makeText(Registration.this,"Failed to register!!!",Toast.LENGTH_LONG).show();
                                             }
                                         }
                                     });
                                 }
-                                else{
-                                    Toast.makeText(Registration.this,"Failed to register! Try again!",Toast.LENGTH_SHORT).show();
+                                else
+                                {
+                                    Toast.makeText(Registration.this,"Failed to register!!!",Toast.LENGTH_LONG).show();
                                 }
                             }
                         });
-
-
-
             }
         });
     }

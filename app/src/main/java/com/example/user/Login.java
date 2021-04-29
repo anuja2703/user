@@ -32,7 +32,15 @@ public class Login extends AppCompatActivity {
         etmail=findViewById(R.id.emailedittxt);
         etpass=findViewById(R.id.passedittxt);
         mAuth=FirebaseAuth.getInstance();
-        forpass.setOnClickListener(new View.OnClickListener() {
+
+        btnsignin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Login.this,OwnerHome.class));
+            }
+        });
+
+       /* forpass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(Login.this,ForgetPassword.class));
@@ -84,6 +92,6 @@ public class Login extends AppCompatActivity {
                     Toast.makeText(Login.this,"Failed to login! Please, check your login credentials",Toast.LENGTH_SHORT).show();
                 }
             }
-        });
+        });*/
     }
 }
