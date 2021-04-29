@@ -47,10 +47,10 @@ public class Registration extends AppCompatActivity {
         registeruser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final String name=etname.getText().toString();
-                final String email=etmail.getText().toString();
-                final String mno=etmno.getText().toString();
-                final String pass=etpass.getText().toString();
+                String name=etname.getText().toString();
+                String email=etmail.getText().toString();
+                String mno=etmno.getText().toString();
+                String pass=etpass.getText().toString();
                 if(name.isEmpty())
                 {
                     etname.setError("Enter the name");
