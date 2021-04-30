@@ -3,6 +3,7 @@ package com.example.user;
 public class User {
 
     public String name,mno,email;
+    public String rateip;
     public User(){
 
     }
@@ -11,4 +12,5 @@ public class User {
         this.mno=mno;
         this.email=email;
     }
+
 }
