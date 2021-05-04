@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <EditText
-            android:id="@+id/editTextNumber"
+            android:id="@+id/curr_mob_num"
             android:layout_width="match_parent"
             android:layout_height="74dp"
             android:ems="10"
@@ -24,11 +24,32 @@
             android:text="Current Mobile Number" />
 
         <EditText
-            android:id="@+id/editTextNumber2"
+            android:id="@+id/new_mob_num"
             android:layout_width="match_parent"
             android:layout_height="71dp"
             android:ems="10"
             android:inputType="number"
             android:text="New Mobile Number" />
+
+        <Button
+            android:id="@+id/updatebtn"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:onClick="update"
+            android:text="update" />
+
+        <EditText
+            android:id="@+id/newpass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Enter New Password" />
+
+        <Button
+            android:id="@+id/resetpass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="reset password" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
