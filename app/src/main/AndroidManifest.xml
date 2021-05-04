@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.User">
-        <activity android:name=".CustomerInformation"></activity>
+        <activity android:name=".editprofile"></activity>
+        <activity android:name=".CustomerInformation" />
         <activity android:name=".setNewRate" />
         <activity android:name=".OwnerHome" />
         <activity android:name=".ForgetPassword" />

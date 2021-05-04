@@ -18,7 +18,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class setNewRate extends AppCompatActivity {
 
-    FirebaseDatabase db=FirebaseDatabase.getInstance();
+   FirebaseDatabase db=FirebaseDatabase.getInstance();
     DatabaseReference root=db.getReference().child("Rate");
     Button setratebtn;
     EditText rateip;

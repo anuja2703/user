@@ -8,8 +8,8 @@
 
     <LinearLayout
         android:id="@+id/profile_back"
-        android:layout_width="299dp"
-        android:layout_height="504dp"
+        android:layout_width="298dp"
+        android:layout_height="580dp"
         android:background="#E2F8F8"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -27,7 +27,33 @@
         <TextView
             android:id="@+id/profile_name_text"
             android:layout_width="match_parent"
-            android:layout_height="58dp"
+            android:layout_height="42dp"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/profilemobilenum"
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:fontFamily="sans-serif-black"
+            android:text="Mobile Number" />
+
+        <TextView
+            android:id="@+id/profilemobnumtext"
+            android:layout_width="match_parent"
+            android:layout_height="33dp"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/unitsconsumed"
+            android:layout_width="match_parent"
+            android:layout_height="31dp"
+            android:fontFamily="sans-serif-black"
+            android:text="Units Consumed" />
+
+        <TextView
+            android:id="@+id/unitsconsumeddisplay"
+            android:layout_width="match_parent"
+            android:layout_height="39dp"
             android:text="TextView" />
 
         <TextView
@@ -70,22 +96,16 @@
             android:text="TextView" />
 
         <Button
-            android:id="@+id/recharge_history"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/teal_200"
-            android:text="RECHARGE HISTORY" />
-
-        <Button
             android:id="@+id/edit_profile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="EDIT PROFILE" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/profilegobackbtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="BACK" />
+            android:text="Go Back" />
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
