@@ -28,8 +28,8 @@
             android:layout_width="match_parent"
             android:layout_height="71dp"
             android:ems="10"
-            android:inputType="number"
-            android:text="New Mobile Number" />
+            android:hint="New Mobile Number"
+            android:inputType="number" />
 
         <Button
             android:id="@+id/updatebtn"
@@ -43,13 +43,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Enter New Password" />
+            android:hint="Enter New Password"
+            android:inputType="textPersonName" />
 
         <Button
             android:id="@+id/resetpass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="reset password" />
+
+        <TextView
+            android:id="@+id/gobackeditprofile"
+            style="@style/MaterialAlertDialog.MaterialComponents.Title.Text.CenterStacked"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="Go Back To Profile"
+            android:textSize="14sp" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

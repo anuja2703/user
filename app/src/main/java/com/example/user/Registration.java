@@ -102,6 +102,10 @@ public class Registration extends AppCompatActivity {
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if(task.isSuccessful()) {
                                                 Toast.makeText(Registration.this, "User has been registered successfully", Toast.LENGTH_LONG).show();
+                                                etname.setText("");
+                                                etmno.setText("");
+                                                etmail.setText("");
+                                                etpass.setText("");
                                             }
                                             else
                                             {

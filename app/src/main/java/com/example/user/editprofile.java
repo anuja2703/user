@@ -37,7 +37,6 @@ public class editprofile extends AppCompatActivity {
         user1 = FirebaseAuth.getInstance().getCurrentUser();
         String userid1 = user1.getUid();
         passresetbtn = findViewById(R.id.resetpass);
-        updatebtn1=findViewById(R.id.updatebtn);
 
             root3.child(userid1).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
@@ -56,15 +55,15 @@ public class editprofile extends AppCompatActivity {
                 }
             });
 
-          updatebtn1.setOnClickListener(new View.OnClickListener() {
+         /*   updatebtn1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    DatabaseReference root4=db3.getReference().child("Users").child(userid1);
+                    DatabaseReference root4=db3.getReference().child("users").child(userid1);
                     String s=newmobnum.getText().toString();
                     root4.child("mno").setValue(s);
                     Toast.makeText(editprofile.this, "Mobile Number Updated", Toast.LENGTH_SHORT).show();
                 }
-            });
+            });*/
 
 
         passresetbtn.setOnClickListener(new View.OnClickListener() {

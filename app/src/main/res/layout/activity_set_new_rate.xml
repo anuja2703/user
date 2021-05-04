@@ -45,8 +45,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="numberDecimal"
-            android:text="Enter new rate" />
+            android:hint="Enter new rate"
+            android:inputType="numberDecimal" />
 
         <Button
             android:id="@+id/setratebutton"
