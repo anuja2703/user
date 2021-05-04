@@ -3,6 +3,7 @@ package com.example.user;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -21,6 +22,7 @@ public class setNewRate extends AppCompatActivity {
    FirebaseDatabase db=FirebaseDatabase.getInstance();
     DatabaseReference root=db.getReference().child("Rate");
     Button setratebtn;
+    TextView gobackbtnsetrate;
     EditText rateip;
     TextView old;
     @Override
@@ -30,6 +32,14 @@ public class setNewRate extends AppCompatActivity {
         setratebtn=findViewById(R.id.setratebutton);
         rateip=findViewById(R.id.newrateip);
         old=findViewById(R.id.oldrateview);
+        gobackbtnsetrate=(TextView) findViewById(R.id.setrategobackbtn);
+        gobackbtnsetrate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(setNewRate.this,OwnerHome.class));
+            }
+        });
+
         setratebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
