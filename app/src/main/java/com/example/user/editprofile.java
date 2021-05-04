@@ -22,8 +22,8 @@ public class editprofile extends AppCompatActivity {
     Button updatebtn1, passresetbtn;
     FirebaseAuth mAuth2;
     public FirebaseUser user1;
-    FirebaseDatabase db1 = FirebaseDatabase.getInstance();
-    DatabaseReference root3 = db1.getReference().child("Users");
+    FirebaseDatabase db3 = FirebaseDatabase.getInstance();
+    DatabaseReference root3 = db3.getReference().child("Users");
 
     // DatabaseReference root2=db1.getReference().child("Rate");
     @Override
@@ -35,10 +35,10 @@ public class editprofile extends AppCompatActivity {
         newpass1 = findViewById(R.id.newpass);
         mAuth2 = FirebaseAuth.getInstance();
         user1 = FirebaseAuth.getInstance().getCurrentUser();
-        String userid = user1.getUid();
+        String userid1 = user1.getUid();
         passresetbtn = findViewById(R.id.resetpass);
 
-            root3.child(userid).addListenerForSingleValueEvent(new ValueEventListener() {
+            root3.child(userid1).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     User uprofile1 = dataSnapshot.getValue(User.class);
@@ -46,6 +46,7 @@ public class editprofile extends AppCompatActivity {
                         String displaycurrmob = uprofile1.mno;
                         curmobnum.setText(displaycurrmob);
                     }
+
                 }
 
                 @Override
@@ -53,34 +54,16 @@ public class editprofile extends AppCompatActivity {
 
                 }
             });
-        //  ref= FirebaseDatabase.getInstance().getReference("users");
 
-          /*updatebtn1.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               root3.child(userid).addListenerForSingleValueEvent(new ValueEventListener() {
-                   @Override
-                   public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                       User uprofile1 = dataSnapshot.getValue(User.class);
-                       if (uprofile1 != null) {
-                           String displaycurrmob = uprofile1.mno;
-                           curmobnum.setText(displaycurrmob);
-                       }
-
-
-                      String ipnewmob = newmobnum.getText().toString();
-                      root3.child(userid).child("mno").setValue(ipnewmob);
-
-
-                   }
-
-                   @Override
-                   public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                   }
-
-
-               });*/
+         /*   updatebtn1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    DatabaseReference root4=db3.getReference().child("users").child(userid1);
+                    String s=newmobnum.getText().toString();
+                    root4.child("mno").setValue(s);
+                    Toast.makeText(editprofile.this, "Mobile Number Updated", Toast.LENGTH_SHORT).show();
+                }
+            });*/
 
 
         passresetbtn.setOnClickListener(new View.OnClickListener() {
