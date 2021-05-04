@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
         myprofilebtn=(Button)findViewById(R.id.my_profile);
         bluetoothbtn=(Button)findViewById(R.id.bluetooth);
         paymentbtn=(Button)findViewById(R.id.payment);
-        logoutbtn=(Button)findViewById(R.id.log_out);
+        logoutbtn=(Button)findViewById(R.id.Logout);
 
         myprofilebtn.setOnClickListener(new View.OnClickListener() {
             @Override
