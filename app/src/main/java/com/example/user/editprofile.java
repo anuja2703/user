@@ -3,10 +3,12 @@ package com.example.user;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,19 +26,27 @@ public class editprofile extends AppCompatActivity {
     public FirebaseUser user1;
     FirebaseDatabase db3 = FirebaseDatabase.getInstance();
     DatabaseReference root3 = db3.getReference().child("Users");
-
+    private TextView gobacktologin;
     // DatabaseReference root2=db1.getReference().child("Rate");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editprofile);
         updatebtn1=findViewById(R.id.updatebtn);
+        gobacktologin=(TextView)findViewById(R.id.gobackeditprofile);
         curmobnum = findViewById(R.id.curr_mob_num);
         newmobnum = findViewById(R.id.new_mob_num);
         newpass1 = findViewById(R.id.newpass);
         mAuth2 = FirebaseAuth.getInstance();
         user1 = FirebaseAuth.getInstance().getCurrentUser();
         String userid1 = user1.getUid();
+
+        gobacktologin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(editprofile.this,profile.class));
+            }
+        });
         passresetbtn = findViewById(R.id.resetpass);
 
             root3.child(userid1).addListenerForSingleValueEvent(new ValueEventListener() {
