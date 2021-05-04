@@ -30,6 +30,7 @@ public class editprofile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editprofile);
+        updatebtn1=findViewById(R.id.updatebtn);
         curmobnum = findViewById(R.id.curr_mob_num);
         newmobnum = findViewById(R.id.new_mob_num);
         newpass1 = findViewById(R.id.newpass);
@@ -55,15 +56,15 @@ public class editprofile extends AppCompatActivity {
                 }
             });
 
-         /*   updatebtn1.setOnClickListener(new View.OnClickListener() {
+         updatebtn1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    DatabaseReference root4=db3.getReference().child("users").child(userid1);
+                    DatabaseReference root4=db3.getReference().child("Users").child(userid1);
                     String s=newmobnum.getText().toString();
                     root4.child("mno").setValue(s);
                     Toast.makeText(editprofile.this, "Mobile Number Updated", Toast.LENGTH_SHORT).show();
                 }
-            });*/
+            });
 
 
         passresetbtn.setOnClickListener(new View.OnClickListener() {
