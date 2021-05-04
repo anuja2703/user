@@ -34,9 +34,10 @@
         <Button
             android:id="@+id/updatebtn"
             android:layout_width="match_parent"
-            android:layout_height="72dp"
+            android:layout_height="wrap_content"
             android:onClick="update"
-            android:text="update" />
+            android:text="update"
+            android:textSize="24sp" />
 
         <EditText
             android:id="@+id/newpass"
@@ -50,7 +51,8 @@
             android:id="@+id/resetpass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="reset password" />
+            android:text="reset password"
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/gobackeditprofile"

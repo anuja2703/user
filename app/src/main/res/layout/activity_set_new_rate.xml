@@ -51,8 +51,9 @@
         <Button
             android:id="@+id/setratebutton"
             android:layout_width="match_parent"
-            android:layout_height="58dp"
-            android:text="Set Rate" />
+            android:layout_height="wrap_content"
+            android:text="Set Rate"
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/setrategobackbtn"
