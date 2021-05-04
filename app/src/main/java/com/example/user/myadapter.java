@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class myadapter extends FirebaseRecyclerAdapter<model,myadapter.myviewholder> {
@@ -32,7 +33,8 @@ public class myadapter extends FirebaseRecyclerAdapter<model,myadapter.myviewhol
             public void onClick(View view) {
                 AlertDialog.Builder builder=new AlertDialog.Builder(holder.ademail.getContext());
                 builder.setTitle("Do you want to delete?");
-                builder.setMessage("This will delete customer permanently");
+                builder.setMessage("This will delete customer's account  permanently");
+
                 builder.setPositiveButton("Yes",(dialogInterface, i) -> {
                     FirebaseDatabase.getInstance().getReference().child("Users")
                             .child(getRef(position).getKey()).removeValue();
