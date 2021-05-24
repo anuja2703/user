@@ -54,6 +54,14 @@
             android:layout_width="match_parent"
             android:layout_height="58dp"
             android:text="Set Rate" />
+
+        <TextView
+            android:id="@+id/setrategobackbtn"
+            style="@style/MaterialAlertDialog.MaterialComponents.Title.Text.CenterStacked"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="Go Back To Home" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

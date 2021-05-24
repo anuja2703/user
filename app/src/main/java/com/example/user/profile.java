@@ -18,10 +18,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class profile extends AppCompatActivity {
+
     FirebaseDatabase db1=FirebaseDatabase.getInstance();
     DatabaseReference root1=db1.getReference().child("Users");
     DatabaseReference root2=db1.getReference().child("Rate");
-        Button editprofilebtn;
+        Button editprofilebtn,profilegoback;
    FirebaseAuth mAuth1;
        public FirebaseUser user;
         TextView nametext,mobtext,unitstext,lastrechargetext,remainingrechargetext,ratedisplaytext;
@@ -39,6 +40,13 @@ public class profile extends AppCompatActivity {
         remainingrechargetext=findViewById(R.id.profile_last_recharge_text);
         ratedisplaytext=findViewById(R.id.profile_rate_text);
         editprofilebtn=findViewById(R.id.edit_profile);
+        profilegoback=(Button)findViewById(R.id.profilegobackbtn);
+        profilegoback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(profile.this,MainActivity.class));
+            }
+        });
 
         TextView n1=findViewById(R.id.regNametxt);
         TextView m1=findViewById(R.id.regMobiletxt);
