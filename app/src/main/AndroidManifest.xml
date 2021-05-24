@@ -4,7 +4,7 @@
 
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -13,7 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.User">
-        <activity android:name=".editprofile"></activity>
+        <activity android:name=".editprofile" />
         <activity android:name=".CustomerInformation" />
         <activity android:name=".setNewRate" />
         <activity android:name=".OwnerHome" />
@@ -36,6 +36,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <meta-data
+            android:name="com.razorpay.ApiKey"
+            android:value="rzp_test_YUvVuykvtNCKPz"
+            />
+
     </application>
+
 
 </manifest>

@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".OwnerHome"
     android:orientation="vertical"
-    android:background="@color/skyblue">
+
+    android:background="@color/white">
     <TextView
         android:id="@+id/UserHometxt"
         style="@style/MaterialAlertDialog.MaterialComponents.Title.Text.CenterStacked"
