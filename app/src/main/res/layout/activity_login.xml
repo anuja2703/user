@@ -22,6 +22,9 @@
 
     <EditText
         android:id="@+id/emailedittxt"
+        android:drawableLeft="@drawable/ic_baseline_contact_mail_24"
+        android:drawableStart="@drawable/ic_baseline_contact_mail_24"
+        android:drawablePadding="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="65dp"
@@ -34,6 +37,9 @@
 
     <EditText
         android:id="@+id/passedittxt"
+        android:drawableLeft="@drawable/ic_baseline_lock_24"
+        android:drawableStart="@drawable/ic_baseline_lock_24"
+        android:drawablePadding="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -46,6 +52,8 @@
 
     <Button
         android:id="@+id/loginbtn"
+        android:drawableLeft="@drawable/ic_baseline_login_24" android:drawableStart="@drawable/ic_baseline_login_24"
+        android:drawablePadding="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
