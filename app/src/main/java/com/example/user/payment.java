@@ -128,7 +128,7 @@ public class payment extends AppCompatActivity implements PaymentResultListener 
             Log.e("Error", "Error at initialization of Razorpay Checkout" + e.getMessage());
         }
     }
-
+//jjj
     @Override
     public void onPaymentSuccess(String s) {
         Toast.makeText(this, "payment success " + s, Toast.LENGTH_SHORT).show();
