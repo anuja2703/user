@@ -41,7 +41,7 @@ public class payment extends AppCompatActivity implements PaymentResultListener 
                 startPayment();
             }
         });
-
+//////mmjjj
     }
 
     private void startPayment() {
