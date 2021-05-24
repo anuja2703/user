@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F7F7FA"
-    tools:context=".payment_input">
+    tools:context=".payment">
 
     <LinearLayout
         android:layout_width="271dp"
@@ -29,6 +29,10 @@
         <EditText
             android:id="@+id/input_amt"
             android:layout_width="match_parent"
+            android:drawableLeft="@drawable/ic_baseline_money_24"
+            android:drawableStart="@drawable/ic_baseline_money_24"
+            android:drawablePadding="5dp"
+
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="numberDecimal" />
