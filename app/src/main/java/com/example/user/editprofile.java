@@ -3,10 +3,12 @@ package com.example.user;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,12 +26,13 @@ public class editprofile extends AppCompatActivity {
     public FirebaseUser user1;
     FirebaseDatabase db3 = FirebaseDatabase.getInstance();
     DatabaseReference root3 = db3.getReference().child("Users");
-
+    TextView gobacktxt;
     // DatabaseReference root2=db1.getReference().child("Rate");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editprofile);
+        gobacktxt=findViewById(R.id.gobackeditprofile);
         curmobnum = findViewById(R.id.curr_mob_num);
         newmobnum = findViewById(R.id.new_mob_num);
         newpass1 = findViewById(R.id.newpass);
@@ -53,6 +56,13 @@ public class editprofile extends AppCompatActivity {
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
 
+                }
+            });
+
+            gobacktxt.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(editprofile.this,profile.class));
                 }
             });
 

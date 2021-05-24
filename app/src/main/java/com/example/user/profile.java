@@ -60,8 +60,13 @@ public class profile extends AppCompatActivity {
                 {
                     String displayname=uprofile.name;
                     String mobdisplay=uprofile.mno;
+                    String lstrecharge=uprofile.Recharge;
+                    //String units=uprofile.Units;
+                    lastrechargetext.setText(lstrecharge);
                     nametext.setText(displayname);
                     mobtext.setText(mobdisplay);
+                    //unitstext.setText(units);
+                    //remainingrechargetext.setText(units);
                 }
             }
 

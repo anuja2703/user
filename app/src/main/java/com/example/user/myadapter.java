@@ -28,6 +28,8 @@ public class myadapter extends FirebaseRecyclerAdapter<model,myadapter.myviewhol
         holder.adname.setText(model.getName());
         holder.ademail.setText(model.getEmail());
         holder.admbl.setText(model.getMno());
+        holder.adlastrechrge.setText(model.getRecharge());
+        //holder.adreamainrecharge.setText(model.getUnits());
         holder.delbtncustinfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -60,7 +62,7 @@ public class myadapter extends FirebaseRecyclerAdapter<model,myadapter.myviewhol
 
     class myviewholder extends RecyclerView.ViewHolder
     {
-        TextView adname,ademail,admbl;
+        TextView adname,ademail,admbl,adlastrechrge,adreamainrecharge;
         Button delbtncustinfo;
         public myviewholder(@NonNull View itemView) {
             super(itemView);
@@ -68,6 +70,8 @@ public class myadapter extends FirebaseRecyclerAdapter<model,myadapter.myviewhol
             ademail=(TextView)itemView.findViewById(R.id.srcustemailtxt);
             admbl=(TextView)itemView.findViewById(R.id.srmbltxt);
             delbtncustinfo=(Button) itemView.findViewById(R.id.srDeleteCustbtn);
+            adlastrechrge=(TextView)itemView.findViewById(R.id.srlastrechargetxt);
+            adreamainrecharge=(TextView)itemView.findViewById(R.id.srrechargeremainedtxt);
         }
     }
 }

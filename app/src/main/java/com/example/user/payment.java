@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.os.Bundle;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -20,15 +22,18 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.razorpay.Checkout;
+import com.razorpay.PaymentData;
 import com.razorpay.PaymentResultListener;
+import com.razorpay.PaymentResultWithDataListener;
 
 import org.json.JSONObject;
 
-public class payment extends AppCompatActivity implements PaymentResultListener {
+public class payment extends AppCompatActivity implements PaymentResultWithDataListener {
 
     AlertDialog.Builder builder;
     private Button confirmpay;
     String paydisplayname,paymobdisplay,payemaildisplay;
+    String units;
     private EditText editpay;
     FirebaseDatabase paydb1=FirebaseDatabase.getInstance();
     DatabaseReference payroot1=paydb1.getReference().child("Users");
@@ -50,9 +55,9 @@ public class payment extends AppCompatActivity implements PaymentResultListener 
                 if(uprofile!=null)
                 {
                     paydisplayname=uprofile.name;
-                     paymobdisplay=uprofile.mno;
-                     payemaildisplay=uprofile.email;
-
+                    paymobdisplay=uprofile.mno;
+                    payemaildisplay=uprofile.email;
+                    units=uprofile.Units;
                 }
             }
 
@@ -128,8 +133,45 @@ public class payment extends AppCompatActivity implements PaymentResultListener 
             Log.e("Error", "Error at initialization of Razorpay Checkout" + e.getMessage());
         }
     }
-//jjj
+
     @Override
+    public void onPaymentSuccess(String s, PaymentData paymentData) {
+        Toast.makeText(this, "payment success " + s + "\n"+paymentData.getUserEmail()+"\n"+paymentData.getUserContact(), Toast.LENGTH_LONG).show();
+        AlertDialog alertDialog=builder.create();
+        alertDialog.setTitle("Payment is Successfull");
+        alertDialog.setMessage("Your payment details are:\nAmount paid: "+editpay.getText().toString()+"\nOrder_ID: "+s+"\nPayment_ID: "+paymentData.getPaymentId()+"\nSignature: "+paymentData.getSignature());
+        alertDialog.setButton(Dialog.BUTTON_POSITIVE,"OK", (Message) null);
+        alertDialog.show();
+        String userid=payuser.getUid();
+        payroot1.child(userid).child("Recharge").setValue(editpay.getText().toString());
+        DatabaseReference payroot2=paydb1.getReference().child("Rate");
+
+        payroot2.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                int rate=Integer.parseInt(snapshot.getValue(String.class));
+                int unit=Integer.parseInt(units)+Integer.parseInt(editpay.getText().toString())/rate;
+                payroot1.child(userid).child("Units").setValue(unit);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+        }
+
+    @Override
+    public void onPaymentError(int i, String s, PaymentData paymentData) {
+        Toast.makeText(this, "Payment failed " + s, Toast.LENGTH_SHORT).show();
+        AlertDialog alertDialog=builder.create();
+        alertDialog.setTitle("Payment failed! Try again.");
+        alertDialog.show();
+    }
+    //jjj
+    /*@Override
     public void onPaymentSuccess(String s) {
         Toast.makeText(this, "payment success " + s, Toast.LENGTH_SHORT).show();
         AlertDialog alertDialog=builder.create();
@@ -143,5 +185,5 @@ public class payment extends AppCompatActivity implements PaymentResultListener 
         AlertDialog alertDialog=builder.create();
         alertDialog.setTitle("Payment failed! Try again.");
         alertDialog.show();
-    }
+    }*/
 }
