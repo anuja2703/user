@@ -11,6 +11,7 @@
         android:id="@+id/setNewRatetxt"
         style="@style/MaterialAlertDialog.MaterialComponents.Title.Text.CenterStacked"
         android:layout_width="match_parent"
+
         android:layout_height="wrap_content"
         android:layout_marginTop="90dp"
         android:text="Set New Rate"
@@ -43,6 +44,9 @@
 
         <EditText
             android:id="@+id/newrateip"
+            android:drawableLeft="@drawable/ic_baseline_create_24"
+            android:drawableStart="@drawable/ic_baseline_create_24"
+            android:drawablePadding="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
