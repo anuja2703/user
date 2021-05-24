@@ -6,6 +6,9 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.razorpay.Checkout;
@@ -16,12 +19,28 @@ import org.json.JSONObject;
 public class payment extends AppCompatActivity implements PaymentResultListener {
 
     AlertDialog.Builder builder;
+    private Button confirmpay;
+    private EditText editpay;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
+        confirmpay=(Button)findViewById(R.id.Pay_btn);
+        editpay=(EditText)findViewById(R.id.input_amt);
         builder=new AlertDialog.Builder(this);
-        startPayment();
+
+
+        confirmpay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(editpay.getText().toString().equals(""))
+                {
+                    Toast.makeText(payment.this, "Please Fill Payment", Toast.LENGTH_SHORT).show();
+
+                }
+                startPayment();
+            }
+        });
 
     }
 
@@ -52,7 +71,10 @@ public class payment extends AppCompatActivity implements PaymentResultListener 
             //            options.put("order_id", "order_H8UaIF6EQDC6EO");//from response of step 3.
             options.put("theme.color", "#ffffff");
             options.put("currency", "INR");
-            options.put("amount", "60000");//pass amount in currency subunits
+            String payment=editpay.getText().toString();
+            double total=Double.parseDouble(payment);
+            total=total*100;
+            options.put("amount", total);//pass amount in currency subunits
             options.put("prefill.email", "anujajanawade.27@gmail.com");
             options.put("prefill.contact", "9850951128");
 

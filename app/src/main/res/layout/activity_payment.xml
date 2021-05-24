@@ -4,7 +4,43 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/purple_200"
+    android:background="#F7F7FA"
     tools:context=".payment">
+
+    <LinearLayout
+        android:layout_width="271dp"
+        android:layout_height="405dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginBottom="332dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <TextView
+            android:id="@+id/display_text_pay"
+            android:layout_width="match_parent"
+            android:layout_height="105dp"
+            android:text="Enter Amout"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display2" />
+
+        <EditText
+            android:id="@+id/input_amt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="numberDecimal" />
+
+        <Button
+            android:id="@+id/Pay_btn"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="match_parent"
+            android:layout_height="73dp"
+            android:background="#885ADA"
+            android:text="PAY"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display2" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
