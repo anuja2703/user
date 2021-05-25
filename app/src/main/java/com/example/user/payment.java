@@ -28,6 +28,8 @@ import com.razorpay.PaymentResultWithDataListener;
 
 import org.json.JSONObject;
 
+import java.util.Objects;
+
 public class payment extends AppCompatActivity implements PaymentResultWithDataListener {
 
     AlertDialog.Builder builder;
@@ -57,7 +59,7 @@ public class payment extends AppCompatActivity implements PaymentResultWithDataL
                     paydisplayname=uprofile.name;
                     paymobdisplay=uprofile.mno;
                     payemaildisplay=uprofile.email;
-                    units=uprofile.Units;
+                    //units=uprofile.Units;
                 }
             }
 
@@ -149,9 +151,10 @@ public class payment extends AppCompatActivity implements PaymentResultWithDataL
         payroot2.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                int rate=Integer.parseInt(snapshot.getValue(String.class));
-                int unit=Integer.parseInt(units)+Integer.parseInt(editpay.getText().toString())/rate;
-                payroot1.child(userid).child("Units").setValue(unit);
+
+                //int rate=Integer.parseInt(snapshot.getValue(String.class));
+                //int unit=Integer.parseInt(units)+Integer.parseInt(editpay.getText().toString())/rate;
+                //payroot1.child(userid).child("Units").setValue(unit);
             }
 
             @Override

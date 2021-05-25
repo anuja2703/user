@@ -95,7 +95,7 @@ public class Registration extends AppCompatActivity {
                                 if(task.isSuccessful())
                                 {
                                     String Recharge="0";
-                                    User myuser=new User(name,mno,email,Recharge);
+                                    User myuser=new User(name,mno,email);
                                     FirebaseDatabase.getInstance().getReference("Users")
                                             .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                             .setValue(myuser).addOnCompleteListener(new OnCompleteListener<Void>() {

@@ -10,15 +10,9 @@ public class User {
     public User(){
 
     }
-   /* public User(String name, String mno, String email){
+    public User(String name, String mno, String email){
         this.name=name;
         this.mno=mno;
         this.email=email;
-    }*/
-    public User(String name, String mno, String email,String Units){
-        this.name=name;
-        this.mno=mno;
-        this.email=email;
-        this.Units=Units;
     }
 }
