@@ -12,7 +12,7 @@
         style="@style/MaterialAlertDialog.MaterialComponents.Title.Text.CenterStacked"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="75dp"
+        android:layout_marginTop="50dp"
         android:text="Customer Registration"
         android:textColor="#050505"
         android:textSize="30sp"
@@ -22,12 +22,12 @@
 
     <EditText
         android:id="@+id/regNametxt"
-        android:drawableLeft="@drawable/ic_baseline_contacts_24"
-        android:drawableStart="@drawable/ic_baseline_contacts_24"
-        android:drawablePadding="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="65dp"
+        android:layout_marginTop="50dp"
+        android:drawableStart="@drawable/ic_baseline_contacts_24"
+        android:drawableLeft="@drawable/ic_baseline_contacts_24"
+        android:drawablePadding="5dp"
         android:ems="10"
         android:hint="Name"
         android:inputType="textPersonName"
@@ -70,19 +70,20 @@
 
     <EditText
         android:id="@+id/editTextTextPassword"
-        android:drawableLeft="@drawable/ic_baseline_lock_24"
-        android:drawableStart="@drawable/ic_baseline_lock_24"
-        android:drawablePadding="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
+        android:drawableStart="@drawable/ic_baseline_lock_24"
+        android:drawableLeft="@drawable/ic_baseline_lock_24"
+        android:drawablePadding="5dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/regMobiletxt" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextBBluetoothaddr" />
 
     <Button
         android:id="@+id/regbtn"
@@ -106,4 +107,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/regbtn" />
+
+    <EditText
+        android:id="@+id/editTextBBluetoothaddr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:drawableStart="@android:drawable/stat_sys_data_bluetooth"
+        android:ems="10"
+        android:hint="Bluetooth Address"
+        android:inputType="textPersonName"
+        android:textSize="24sp"
+        app:layout_constraintTop_toBottomOf="@+id/regMobiletxt"
+        tools:layout_editor_absoluteX="100dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

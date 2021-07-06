@@ -21,7 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.Objects;
 
 public class Registration extends AppCompatActivity {
-    private EditText etname,etmno,etmail,etpass;
+    private EditText etname,etmno,etmail,etpass,etbluetooth;
     private Button registeruser;
     private FirebaseAuth mAuth;
     private TextView gobacktohome;
@@ -36,7 +36,7 @@ public class Registration extends AppCompatActivity {
         etmno=(EditText)findViewById(R.id.regMobiletxt);
         etmail=(EditText)findViewById(R.id.regEmailTxt);
         etpass=(EditText)findViewById(R.id.editTextTextPassword);
-
+        etbluetooth=(EditText)findViewById(R.id.editTextBBluetoothaddr);
         gobacktohome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -51,6 +51,7 @@ public class Registration extends AppCompatActivity {
                 String email=etmail.getText().toString();
                 String mno=etmno.getText().toString();
                 String pass=etpass.getText().toString();
+                String bluetoothadd=etbluetooth.getText().toString();
                 if(name.isEmpty())
                 {
                     etname.setError("Enter the name");
@@ -87,7 +88,18 @@ public class Registration extends AppCompatActivity {
                     etpass.requestFocus();
                     return;
                 }
-
+                if(bluetoothadd.isEmpty())
+                {
+                    etbluetooth.setError("Enter the bluetooth address");
+                    etbluetooth.requestFocus();
+                    return;
+                }
+                if(bluetoothadd.length()!=17)
+                {
+                    etbluetooth.setError("Enter correct bluetooth address");
+                    etbluetooth.requestFocus();
+                    return;
+                }
                 mAuth.createUserWithEmailAndPassword(email,pass)
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
@@ -95,7 +107,10 @@ public class Registration extends AppCompatActivity {
                                 if(task.isSuccessful())
                                 {
                                     String Recharge="0";
-                                    User myuser=new User(name,mno,email);
+                                    String UnitsConsumed="0";
+                                    String UnitsRemaining="0";
+                                    //User myuser=new User(name,mno,email);
+                                    register myuser=new register(name,mno,email,bluetoothadd,Recharge,UnitsConsumed,UnitsRemaining);
                                     FirebaseDatabase.getInstance().getReference("Users")
                                             .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                             .setValue(myuser).addOnCompleteListener(new OnCompleteListener<Void>() {

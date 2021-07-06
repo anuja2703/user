@@ -9,7 +9,7 @@ import android.app.Dialog;
 import android.os.Bundle;
 import android.os.Message;
 import android.util.Log;
-import android.view.View;
+//import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -23,7 +23,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.razorpay.Checkout;
 import com.razorpay.PaymentData;
-import com.razorpay.PaymentResultListener;
 import com.razorpay.PaymentResultWithDataListener;
 
 import org.json.JSONObject;
@@ -33,7 +32,7 @@ import java.util.Objects;
 public class payment extends AppCompatActivity implements PaymentResultWithDataListener {
 
     AlertDialog.Builder builder;
-    private Button confirmpay;
+    Button confirmpay;
     String paydisplayname,paymobdisplay,payemaildisplay;
     String units;
     private EditText editpay;
@@ -48,43 +47,21 @@ public class payment extends AppCompatActivity implements PaymentResultWithDataL
         editpay=(EditText)findViewById(R.id.input_amt);
         builder=new AlertDialog.Builder(this);
         payuser= FirebaseAuth.getInstance().getCurrentUser();
-        String userid=payuser.getUid();
+        assert payuser != null;
 
-        payroot1.child(userid).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                User uprofile=snapshot.getValue(User.class);
-                if(uprofile!=null)
-                {
-                    paydisplayname=uprofile.name;
-                    paymobdisplay=uprofile.mno;
-                    payemaildisplay=uprofile.email;
-                    //units=uprofile.Units;
-                }
-            }
 
-            ////mmmm
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+
+
+
+
+
+        confirmpay.setOnClickListener(v -> {
+            if(editpay.getText().toString().equals(""))
+            {
+                Toast.makeText(payment.this, "Please Fill Payment", Toast.LENGTH_SHORT).show();
 
             }
-        });
-
-
-
-
-
-
-        confirmpay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(editpay.getText().toString().equals(""))
-                {
-                    Toast.makeText(payment.this, "Please Fill Payment", Toast.LENGTH_SHORT).show();
-
-                }
-                startPayment();
-            }
+            startPayment();
         });
 //////mmjjj
     }
@@ -138,28 +115,57 @@ public class payment extends AppCompatActivity implements PaymentResultWithDataL
 
     @Override
     public void onPaymentSuccess(String s, PaymentData paymentData) {
-        Toast.makeText(this, "payment success " + s + "\n"+paymentData.getUserEmail()+"\n"+paymentData.getUserContact(), Toast.LENGTH_LONG).show();
+
+        String userid=payuser.getUid();
+
+        payroot1.child(userid).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                register uprofile=snapshot.getValue(register.class);
+                if(uprofile!=null)
+                {
+                    paydisplayname=uprofile.name;
+                    paymobdisplay=uprofile.mno;
+                    payemaildisplay=uprofile.email;
+                    units=uprofile.UnitsRemaining;
+                }
+            }
+
+            ////mmmm
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                System.out.println(error);
+            }
+        });
+
         AlertDialog alertDialog=builder.create();
-        alertDialog.setTitle("Payment is Successfull");
+        alertDialog.setTitle("Payment is Successful");
         alertDialog.setMessage("Your payment details are:\nAmount paid: "+editpay.getText().toString()+"\nOrder_ID: "+s+"\nPayment_ID: "+paymentData.getPaymentId()+"\nSignature: "+paymentData.getSignature());
         alertDialog.setButton(Dialog.BUTTON_POSITIVE,"OK", (Message) null);
         alertDialog.show();
-        String userid=payuser.getUid();
+        Toast.makeText(this, "payment success " + s + "\n"+paymentData.getUserEmail()+"\n"+paymentData.getUserContact(), Toast.LENGTH_LONG).show();
+        //String userid=payuser.getUid();
         payroot1.child(userid).child("Recharge").setValue(editpay.getText().toString());
         DatabaseReference payroot2=paydb1.getReference().child("Rate");
 
         payroot2.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                //int rate=Integer.parseInt(snapshot.getValue(String.class));
-                //int unit=Integer.parseInt(units)+Integer.parseInt(editpay.getText().toString())/rate;
-                //payroot1.child(userid).child("Units").setValue(unit);
+                System.out.println(units);
+                //String rt=snapshot.getValue(String.class);
+                //int rate=Integer.parseInt(rt);
+                //System.out.println(rate);
+                //int unit=Integer.parseInt(units)+Integer.parseInt(editpay.getText().toString())/45;
+                //System.out.println(unit);
+                //payroot1.child(userid).child("UnitsRemaining").setValue("10");
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Toast.makeText(payment.this,""+error,Toast.LENGTH_LONG).show();
+                AlertDialog alertDialog=builder.create();
+                alertDialog.setTitle("Payment failed! Try again.");
+                alertDialog.show();
             }
         });
 

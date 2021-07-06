@@ -37,7 +37,7 @@ public class profile extends AppCompatActivity {
         mobtext=findViewById(R.id.profilemobnumtext);
         unitstext=findViewById(R.id.unitsconsumeddisplay);
         lastrechargetext=findViewById(R.id.profile_last_recharge_text);
-        remainingrechargetext=findViewById(R.id.profile_last_recharge_text);
+        remainingrechargetext=findViewById(R.id.profile_remaining_recharge_text);
         ratedisplaytext=findViewById(R.id.profile_rate_text);
         editprofilebtn=findViewById(R.id.edit_profile);
         profilegoback=(Button)findViewById(R.id.profilegobackbtn);
@@ -55,18 +55,21 @@ public class profile extends AppCompatActivity {
         root1.child(userid).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                User uprofile=dataSnapshot.getValue(User.class);
+                register uprofile=dataSnapshot.getValue(register.class);
                 if(uprofile!=null)
                 {
                     String displayname=uprofile.name;
                     String mobdisplay=uprofile.mno;
                     String lstrecharge=uprofile.Recharge;
+                    String unitsconsumed=uprofile.UnitsConsumed;
+                    String unitsremaining=uprofile.UnitsRemaining;
                     //String units=uprofile.Units;
                     lastrechargetext.setText(lstrecharge);
                     nametext.setText(displayname);
                     mobtext.setText(mobdisplay);
-                    //unitstext.setText(units);
-                    //remainingrechargetext.setText(units);
+
+                    unitstext.setText(unitsconsumed);
+                    remainingrechargetext.setText(unitsremaining);
                 }
             }
 
