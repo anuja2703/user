@@ -1,18 +1,17 @@
 package com.example.user;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
-import android.os.Message;
 import android.util.Log;
-//import android.view.View;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -27,47 +26,66 @@ import com.razorpay.PaymentResultWithDataListener;
 
 import org.json.JSONObject;
 
-import java.util.Objects;
+//import android.view.View;
 
 public class payment extends AppCompatActivity implements PaymentResultWithDataListener {
-
-    AlertDialog.Builder builder;
     Button confirmpay;
-    String paydisplayname,paymobdisplay,payemaildisplay;
+    String paydisplayname,paymobdisplay,payemaildisplay,val;
     String units;
-    private EditText editpay;
-    FirebaseDatabase paydb1=FirebaseDatabase.getInstance();
-    DatabaseReference payroot1=paydb1.getReference().child("Users");
-    public FirebaseUser payuser;
+    EditText editpay;
+    int rate;
+    FirebaseUser user;
+    DatabaseReference dbref,dbref2;
+    String userID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
         confirmpay=(Button)findViewById(R.id.Pay_btn);
         editpay=(EditText)findViewById(R.id.input_amt);
-        builder=new AlertDialog.Builder(this);
-        payuser= FirebaseAuth.getInstance().getCurrentUser();
-        assert payuser != null;
 
-
-
-
-
-
-
-        confirmpay.setOnClickListener(v -> {
-            if(editpay.getText().toString().equals(""))
-            {
-                Toast.makeText(payment.this, "Please Fill Payment", Toast.LENGTH_SHORT).show();
-
+        confirmpay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                val=editpay.getText().toString();
+                if(val.isEmpty())
+                {
+                    editpay.setError("Enter the name");
+                    editpay.requestFocus();
+                    return;
+                }
+                startPayment();
             }
-            startPayment();
         });
-//////mmjjj
+
+
+
     }
 
 
     private void startPayment() {
+        user=FirebaseAuth.getInstance().getCurrentUser();
+        dbref=FirebaseDatabase.getInstance().getReference("Users");
+        userID=user.getUid();
+
+        dbref.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                register userinfo=snapshot.getValue(register.class);
+                if(userinfo!=null)
+                {
+                    paydisplayname=userinfo.name;
+                    paymobdisplay=userinfo.mno;
+                    payemaildisplay=userinfo.email;
+                    units=userinfo.UnitsRemaining;
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
         Checkout checkout = new Checkout();
         checkout.setKeyID("rzp_test_YUvVuykvtNCKPz");
         Checkout.preload(getApplicationContext());
@@ -115,84 +133,69 @@ public class payment extends AppCompatActivity implements PaymentResultWithDataL
 
     @Override
     public void onPaymentSuccess(String s, PaymentData paymentData) {
+try{
+        user=FirebaseAuth.getInstance().getCurrentUser();
+        dbref=FirebaseDatabase.getInstance().getReference("Users");
+        userID=user.getUid();
 
-        String userid=payuser.getUid();
-
-        payroot1.child(userid).addListenerForSingleValueEvent(new ValueEventListener() {
+        dbref.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                register uprofile=snapshot.getValue(register.class);
-                if(uprofile!=null)
+                register userinfo=snapshot.getValue(register.class);
+                if(userinfo!=null)
                 {
-                    paydisplayname=uprofile.name;
-                    paymobdisplay=uprofile.mno;
-                    payemaildisplay=uprofile.email;
-                    units=uprofile.UnitsRemaining;
+                    paydisplayname=userinfo.name;
+                    paymobdisplay=userinfo.mno;
+                    payemaildisplay=userinfo.email;
+                    units=userinfo.UnitsRemaining;
                 }
             }
 
-            ////mmmm
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                System.out.println(error);
+
             }
         });
 
-        AlertDialog alertDialog=builder.create();
-        alertDialog.setTitle("Payment is Successful");
-        alertDialog.setMessage("Your payment details are:\nAmount paid: "+editpay.getText().toString()+"\nOrder_ID: "+s+"\nPayment_ID: "+paymentData.getPaymentId()+"\nSignature: "+paymentData.getSignature());
-        alertDialog.setButton(Dialog.BUTTON_POSITIVE,"OK", (Message) null);
-        alertDialog.show();
-        Toast.makeText(this, "payment success " + s + "\n"+paymentData.getUserEmail()+"\n"+paymentData.getUserContact(), Toast.LENGTH_LONG).show();
-        //String userid=payuser.getUid();
-        payroot1.child(userid).child("Recharge").setValue(editpay.getText().toString());
-        DatabaseReference payroot2=paydb1.getReference().child("Rate");
+            dbref2=FirebaseDatabase.getInstance().getReference().child("Rate");
+            dbref2.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    rate=Integer.parseInt(snapshot.getValue(String.class));
+                }
 
-        payroot2.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                System.out.println(units);
-                //String rt=snapshot.getValue(String.class);
-                //int rate=Integer.parseInt(rt);
-                //System.out.println(rate);
-                //int unit=Integer.parseInt(units)+Integer.parseInt(editpay.getText().toString())/45;
-                //System.out.println(unit);
-                //payroot1.child(userid).child("UnitsRemaining").setValue("10");
-            }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(payment.this,""+error,Toast.LENGTH_LONG).show();
-                AlertDialog alertDialog=builder.create();
-                alertDialog.setTitle("Payment failed! Try again.");
-                alertDialog.show();
-            }
-        });
+                }
+            });
 
+            int unit=Integer.parseInt(units)+Integer.parseInt(val)/rate;
+            String intunit=Integer.toString(unit);
+            dbref.child(userID).child("Recharge").setValue(val);
+            dbref.child(userID).child("UnitsRemaining").setValue(intunit);
+
+            AlertDialog.Builder builder=new AlertDialog.Builder(payment.this);
+            builder.setTitle("Payment Successful");
+            builder.setMessage("User Contact:"+paymentData.getUserContact()+"\nUser email:"+paymentData.getUserEmail()+"\nAmount:"+val+"\nTransaction Id:"+paymentData.getPaymentId());
+            builder.setNeutralButton("Ok", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+
+                }
+            });
+            builder.show();}
+    catch (Exception e)
+    {
+        Toast.makeText(this,"Payment failed!!! Please try again",Toast.LENGTH_LONG).show();
+    }
 
         }
 
     @Override
     public void onPaymentError(int i, String s, PaymentData paymentData) {
-        Toast.makeText(this, "Payment failed " + s, Toast.LENGTH_SHORT).show();
-        AlertDialog alertDialog=builder.create();
-        alertDialog.setTitle("Payment failed! Try again.");
-        alertDialog.show();
-    }
-    //jjj
-    /*@Override
-    public void onPaymentSuccess(String s) {
-        Toast.makeText(this, "payment success " + s, Toast.LENGTH_SHORT).show();
-        AlertDialog alertDialog=builder.create();
-        alertDialog.setTitle("Payment is Successfull");
-        alertDialog.show();
+        Toast.makeText(this,"Error occured:"+s,Toast.LENGTH_LONG).show();
     }
 
-    @Override
-    public void onPaymentError(int i, String s) {
-        Toast.makeText(this, "Payment failed " + s, Toast.LENGTH_SHORT).show();
-        AlertDialog alertDialog=builder.create();
-        alertDialog.setTitle("Payment failed! Try again.");
-        alertDialog.show();
-    }*/
+
 }

@@ -1,7 +1,7 @@
 package com.example.user;
 
 public class model {
-    String name,email,mno,Recharge,Units;
+    String name,email,mno,Recharge,UnitsConsumed,UnitsRemaining;
 
     public model() {
     }
@@ -11,14 +11,25 @@ public class model {
         this.name = name;
         this.email = email;
         this.mno = mno;
+        //this.Recharge=Recharge;
+        //this.UnitsConsumed=UnitsConsumed;
+        //this.UnitsRemaining=UnitsRemaining;
     }
 
-    public String getUnits() {
-        return Units;
+    public String getUnitsConsumed() {
+        return UnitsConsumed;
     }
 
-    public void setUnits(String units) {
-        Units = units;
+    public void setUnitsConsumed(String unitsConsumed) {
+        UnitsConsumed = unitsConsumed;
+    }
+
+    public String getUnitsRemaining() {
+        return UnitsRemaining;
+    }
+
+    public void setUnitsRemaining(String unitsRemaining) {
+        UnitsRemaining = unitsRemaining;
     }
 
     public String getRecharge() {
